@@ -1,0 +1,1 @@
+solr-advent-calender2016用のリポジトリです
