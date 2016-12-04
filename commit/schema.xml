@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema name="solr-advent-calender2016" version="1.5">
+  <fields>
+    <field name="_version_" type="long" indexed="true" stored="true"></field>
+    <field name="_root_" type="string" indexed="true" stored="false"></field>
+    <field name="id" type="string" indexed="true" stored="true" required="true"></field>
+    <field name="id_int" type="int" indexed="true" stored="true" required="true"></field>
+
+    <!--国名を3文字のアルファベットに短縮したもの、249カ国のうち1つをランダムで投入-->
+    <field name="country" type="string" indexed="true" stored="true"></field>
+    <field name="country_doc_val" type="string" indexed="true" stored="true" docValues="true"></field>
+    
+    <!--3文字の国名をランダムに0-15個投入-->
+    <field name="countries" type="string" indexed="true" stored="true" multiValued="true"></field>
+    <field name="countries_doc_val" type="string" indexed="true" stored="true" multiValued="true" docValues="true"></field>
+
+    <!--0~100000の範囲でランダムな値を投入-->
+    <field name="range_searh_int" type="int" indexed="true" stored="true"></field>
+    <field name="range_searh_tint" type="tint" indexed="true" stored="true"></field>
+    
+    <field name="sort_int1" type="int" indexed="true" stored="true"></field>
+    <field name="sort_doc_val_int1" type="int" indexed="true" stored="true" docValues="true"></field>
+    
+    <field name="sort_int2" type="int" indexed="true" stored="true"></field>
+    <field name="sort_doc_val_int2" type="int" indexed="true" stored="true" docValues="true"></field>
+    
+    <field name="sort_int3" type="int" indexed="true" stored="true"></field>
+    <field name="sort_doc_val_int3" type="int" indexed="true" stored="true" docValues="true"></field>
+    
+    <field name="sort_int4" type="int" indexed="true" stored="true"></field>
+    <field name="sort_doc_val_int4" type="int" indexed="true" stored="true" docValues="true"></field>
+    
+    <field name="sort_int5" type="int" indexed="true" stored="true"></field>
+    <field name="sort_doc_val_int5" type="int" indexed="true" stored="true" docValues="true"></field>
+  </fields>
+  <uniqueKey>id</uniqueKey>
+  
+  <copyField source="id" dest="id_int"/>
+  <copyField source="country" dest="country_doc_val"/>
+  <copyField source="countries" dest="countries_doc_val"/>
+  <copyField source="range_searh_int" dest="range_searh_tint"/>
+  <copyField source="sort_int1" dest="sort_doc_val_int1"/>
+  <copyField source="sort_int2" dest="sort_doc_val_int2"/>
+  <copyField source="sort_int3" dest="sort_doc_val_int3"/>
+  <copyField source="sort_int4" dest="sort_doc_val_int4"/>
+  <copyField source="sort_int5" dest="sort_doc_val_int5"/>
+  <similarity class="solr.SchemaSimilarityFactory"/>
+
+  <types>
+    <fieldType name="string" class="solr.StrField" sortMissingLast="true"/>
+    <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>
+    <fieldType name="int" class="solr.TrieIntField" precisionStep="0" positionIncrementGap="0"/>
+    <fieldType name="float" class="solr.TrieFloatField" precisionStep="0" positionIncrementGap="0"/>
+    <fieldType name="long" class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0"/>
+    <fieldType name="double" class="solr.TrieDoubleField" precisionStep="0" positionIncrementGap="0"/>
+    <fieldType name="booleans" class="solr.BoolField" sortMissingLast="true" multiValued="true"/>
+    <fieldType name="tint" class="solr.TrieIntField" precisionStep="8" positionIncrementGap="0"/>
+    <fieldType name="tfloat" class="solr.TrieFloatField" precisionStep="8" positionIncrementGap="0"/>
+    <fieldType name="tlong" class="solr.TrieLongField" precisionStep="8" positionIncrementGap="0"/>
+    <fieldType name="tdouble" class="solr.TrieDoubleField" precisionStep="8" positionIncrementGap="0"/>
+    <fieldType name="date" class="solr.TrieDateField" precisionStep="0" positionIncrementGap="0"/>
+    <fieldType name="tdate" class="solr.TrieDateField" precisionStep="6" positionIncrementGap="0"/>
+    <fieldType name="binary" class="solr.BinaryField"/>
+    <fieldType name="random" class="solr.RandomSortField" indexed="true"/>
+ </types>
+</schema>
